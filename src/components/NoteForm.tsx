@@ -2,6 +2,7 @@
 // 这样可以使组件更灵活，便于在不同的上下文中使用
 
 import { useState } from 'react';
+import { Form, Input, Button } from 'antd';
 
 interface NoteFormProps {
   onAddNote: (content: string) => void; 
@@ -18,29 +19,38 @@ function NoteForm({ onAddNote }: NoteFormProps) {
     };
 
     // 提交表单
-    const handleSubmit = (event: React.FormEvent) => {
-        event.preventDefault(); // 阻止默认表单提交行为
+    const handleSubmit = () => {
         if (!inputValue.trim()) return; // 如果输入为空则不添加 
         onAddNote(inputValue);
         setInputValue(''); // 清空输入框
     };
 
-    return (
-        <form onSubmit={handleSubmit} style={{ display: 'flex', marginBottom: '20px' }}>
-            <input 
-                value={inputValue}
-                onChange={handleInputChange}
-                placeholder='输入笔记内容...'
-                style={{ flex: 1, padding: '10px', fontSize: '16px' }}
-            />
 
-            <button 
-                type='submit'
-                style={{ padding: '10px 20px', fontSize: '16px', marginLeft: '10px' }}
-            >
-                添加笔记
-            </button>
-        </form>
+    return (
+
+       <Form
+      layout="inline"
+      style={{ marginBottom: 20, display: 'flex', gap: 10,width: '100%' }}
+      onFinish={handleSubmit}
+    >
+      <Form.Item style={{ flex: 1, marginBottom: 0 }}>
+        <Input
+          value={inputValue}
+          onChange={handleInputChange}
+          placeholder="输入笔记内容..."
+          style={{ fontSize: 16 }}
+        />
+      </Form.Item>
+      <Form.Item style={{ marginBottom: 0 }}>
+        <Button
+          type="primary"
+          htmlType="submit"
+          style={{ fontSize: 16, minWidth: 90 }}
+        >
+          添加笔记
+        </Button>
+      </Form.Item>
+    </Form>
     )
 }
 
