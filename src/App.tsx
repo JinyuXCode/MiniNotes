@@ -2,9 +2,13 @@ import { useEffect, useState } from "react";
 import type { Note } from "./types";
 import NoteForm from "./components/NoteForm";
 import NoteList from "./components/NoteList";
+import Footer from "./components/Footer";
+import "./App.scss"; // 引入样式文件
 
-import "./App.css"; // 引入样式文件
-import { Row, Col, Card, Input, Button } from "antd"; // 引入 Ant Design 的栅格系统
+
+
+
+import { Input } from "antd"; // 引入 Ant Design 的栅格系统
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([]);
@@ -71,20 +75,18 @@ function App() {
 
   return (
     <div className="app-bg">
-      <Row justify="center">
-        <Col xs={24} sm={22} md={20} lg={18} xl={14}>
-          <Card title="MiniNotes 📝" variant="borderless" hoverable={true}>
-            <NoteForm onAddNote={addNote} />
+      {/* 毛玻璃背景 */}
+      <div className="blur-circle"></div>
 
-            {/* <input
-              type="text"
-              placeholder="搜索笔记..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{ width: "100%", padding: "10px", marginBottom: "20px"}}
-            /> */}
+      <div className="logo">
+        {/* <img src={logo} alt="MiniNotes Logo" style={{ width: "100px", height: "100px" }} /> */}
+        <span className="logo-title">Mini Notes</span>
+        <span className="logo-subtitle">⭐简洁的笔记应用⭐</span>
+      </div>
+      {/* 笔记表单 */}
+      <NoteForm onAddNote={addNote} />
 
-            {/* 搜索 */}
+      {/* 搜索 */}
             <Input
               placeholder="搜索笔记..."
               value={searchQuery}
@@ -108,9 +110,9 @@ function App() {
               onDeleteNote={deleteNote}
               onToggleStar={toggleStar}
             />
-          </Card>
-        </Col>
-      </Row>
+
+
+      <Footer />
     </div>
   );
 }

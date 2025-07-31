@@ -1,0 +1,91 @@
+.app-bg {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  background: #f0f2f5;
+
+  .blur-circle {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 600px;
+    height: 600px;
+
+    border-radius: 50%;
+    background: rgba(200, 220, 255, 0.35); // 可调整颜色和透明度
+    filter: blur(60px);
+
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .logo {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;
+    font-weight: 700;
+
+    .logo-title {
+      // 动态渐变
+      background: linear-gradient(45deg, #6a11cb, #2575fc);
+      background-clip: text;
+      color: transparent;
+      animation: gradient 3s ease infinite;
+      background-size: 200% 200%;
+      // 阴影扩散一些
+      text-shadow: 0 0 10px rgba(38, 50, 56, 0.2),
+        0 0 20px rgba(38, 50, 56, 0.1);
+      // 过渡效果
+      transition: all 0.3s ease;
+    }
+
+    .logo-subtitle {
+      margin-top: 10px;
+      font-size: 24px;
+      color: rgba(0, 0, 0, 0.6);
+      text-align: center;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: rgba(0, 0, 0, 0.8);
+      }
+    }
+  }
+
+  .note-input{
+    resize: none ;
+    font-size: 16px;
+    line-height: 1.5; 
+    color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  .add-note-button {
+    font-size: 60px;
+    margin: 40px 0;
+    color: #4252cc;
+    &:hover {
+      color: #493ec0 !important; 
+      transform: scale(1.30) ;
+    }
+  }
+
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+}
